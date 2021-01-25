@@ -9,8 +9,9 @@
             "email": "davide@bellettini.eu"
         }
     ],
-    "require": {},
     "require-dev": {
+        "phpstan/phpstan": "^0.12.69",
+        "phpstan/phpstan-phpunit": "^0.12.17",
         "phpunit/phpunit": "^9.5"
     },
     "config": {
