@@ -21,12 +21,23 @@ class Money implements Stringable
 
     public static function fromString(string $string): self
     {
-        return new self(1234, 3, 'GBP');
+        preg_match('/^([0-9]+)\.([0-9]+)\/([A-Z]{3})$/', $string, $matches);
+
+        $amount = intval($matches[1] . $matches[2]);
+        $scale = strlen($matches[2]);
+        $currency = $matches[3];
+
+        return new self($amount, $scale, $currency);
     }
 
     public function __toString(): string
     {
-        return '10.00/EUR';
+        return sprintf(
+            '%s.%s/%s',
+            substr((string) $this->amount, 0, -$this->scale),
+            substr((string) $this->amount, -$this->scale),
+            $this->currency
+        );
     }
 
     public function toArray(): array

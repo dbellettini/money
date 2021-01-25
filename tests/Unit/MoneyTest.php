@@ -10,13 +10,24 @@ use Stringable;
 
 class MoneyTest extends TestCase
 {
-    public function testFromStringAndBack(): void
+    public static function validStrings(): array
     {
-        $amount = Money::fromString('10.00/EUR');
+        return [
+            ['10.00/EUR'],
+            ['12.25/GBP'],
+        ];
+    }
+
+    /**
+     * @dataProvider validStrings
+     */
+    public function testFromStringAndBack(string $amountAsString): void
+    {
+        $amount = Money::fromString($amountAsString);
         $this->assertInstanceOf(Money::class, $amount);
         $this->assertInstanceOf(Stringable::class, $amount);
 
-        $this->assertSame('10.00/EUR', (string) $amount);
+        $this->assertSame($amountAsString, (string) $amount);
     }
 
     public function testFromStringToArray(): void
