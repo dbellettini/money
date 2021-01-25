@@ -18,4 +18,16 @@ class MoneyTest extends TestCase
 
         $this->assertSame('10.00/EUR', (string) $amount);
     }
+
+    public function testFromStringToArray(): void
+    {
+        $money = Money::fromString('1.234/GBP');
+        $expected = [
+            'amount' => 1234,
+            'scale' => 3,
+            'currency' => 'GBP',
+        ];
+
+        $this->assertSame($expected, $money->toArray());
+    }
 }
