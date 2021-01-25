@@ -6,7 +6,7 @@ namespace Sb1\Money;
 
 use Stringable;
 
-class Amount implements Stringable
+class Money implements Stringable
 {
     public static function fromString(string $string): self
     {
