@@ -21,7 +21,7 @@ class Money implements Stringable
 
     public static function fromString(string $string): self
     {
-        preg_match('/^([0-9]+)\.([0-9]+)\/([A-Z]{3})$/', $string, $matches);
+        preg_match('/^([0-9]+)\\.([0-9]+)\\/([A-Z]{3})$/', $string, $matches);
 
         $amount = intval($matches[1] . $matches[2]);
         $scale = strlen($matches[2]);
